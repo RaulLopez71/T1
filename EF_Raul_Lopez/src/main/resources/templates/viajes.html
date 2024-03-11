@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Compra de Boletos</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<style>
+	table,
+	th,
+	td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+
+	th,
+	td {
+		padding: 10px;
+		text-align: center;
+	}
+</style>
+
+<body>
+
+	<div class="container">
+
+		<table>
+			<tr style="height: 80px;">
+				<td colspan="2">vivaair.com</td>
+				<td colspan="2">VENTA DE BOLETOS</td>
+			</tr>
+			<tr>
+				<td>Ciudad Origen</td>
+				<td>
+					<select th:field="*{ciudadOrigen}">
+						<option th:each="ciudad : ${ciudades}" th:value="${ciudad.codigoPostal}"
+							th:text="${ciudad.nombre}"></option>
+					</select>
+				</td>
+				<td>Ciudad Destino</td>
+				<td>
+					<select th:field="*{ciudadDestino}">
+						<option th:each="ciudad : ${ciudades}" th:value="${ciudad.codigoPostal}"
+							th:text="${ciudad.nombre}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fecha Salida</td>
+				<td><input type="text" name="txt_fecha_salida" required></td>
+				<td>Fecha Retorno</td>
+				<td><input type="text" name="txt_fecha_retorno" required></td>
+			</tr>
+			<tr>
+				<td>Nombre Comprador</td>
+				<td><input type="text" name="txt_nom" required autofocus placeholder="Ingresar nombre"></td>
+				<td>Cantidad</td>
+				<td><input type="text" name="nombre" size="10" required> &ensp;&ensp;</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="height: 10px;"></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<button style="margin: 0 auto;">Agregar</button>
+					<button style="margin: 0 auto;">Limpiar</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="height: 10px;"></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<table style="width: 100%;">
+						<thead>
+							<tr>
+								<th>Ciudad Origen</th>
+								<th>Ciudad Destino</th>
+								<th>Fecha Salida</th>
+								<th>Fecha Retorno</th>
+								<th>Comprador</th>
+								<th>Cantidad</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="venta : ${ventas}">
+								<td th:text="${venta.ciudadOrigen}"></td>
+								<td th:text="${venta.ciudadDestino}"></td>
+								<td th:text="${venta.fechaViaje}"></td>
+								<td th:text="${venta.fechaRetorno}"></td>
+								<td th:text="${venta.nombreComprador}"></td>
+								<td th:text="${venta.cantidad}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="height: 10px;"></td>
+		</tr>
+		<tr>
+			<td colspan="8"><button style="background-color: red; margin: 0 auto;">Comprar</button></td>
+		</tr>
+		</table>
+	</div>
+</body>
+
+</html>
